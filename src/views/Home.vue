@@ -1,5 +1,5 @@
 <template>
-    <p class="text-light">*Burning XRP to the hooks side chain, this process is non reversable at this point in time.</p>
+    <p class="text-light">*Burning, this process is non reversable at this point in time. This process distroyes the asset on the mainnet.</p>
 </template>
 
 <script>
