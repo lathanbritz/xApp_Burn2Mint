@@ -27,7 +27,7 @@
                     <button type="button" class="btn btn-primary">burn</button>
                 </div>
                 <div v-else>
-                    <div class="spinner-border text-light" color="#9d2dff" role="status">
+                    <div class="spinner-border pe-3" role="status">
                         <span class="visually-hidden"></span>
                     </div>
                     <span>analyzing accounts...</span>
@@ -157,6 +157,10 @@
     .btn-primary {
         background-color: #9d2dff;
         border-color: #9d2dff;
+    }
+
+    .spinner-border {
+        color: #9d2dff;
     }
 
     h1 {
