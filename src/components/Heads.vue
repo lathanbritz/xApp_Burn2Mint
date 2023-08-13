@@ -29,6 +29,7 @@
 </template>
 
 <script>
+    import { flagNames } from 'flagnames'
     import { XrplClient } from 'xrpl-client'
     import { XummSdkJwt } from 'xumm-sdk'
 
