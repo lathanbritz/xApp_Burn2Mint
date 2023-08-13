@@ -18,13 +18,13 @@
 
             <h1 class="display-5 fw-bold"><slot></slot></h1>
 
-            
-            <input type="text" placehoder="amount to burn"/>
-            <select class="form-select" aria-label="Disabled select example" disabled>
-                <option value="XRP">XRP</option>
-            </select>
-            <button type="button" class="btn btn-primary">burn</button>
-            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placehoder="amount to burn"/>
+                <select class="form-select" aria-label="Disabled select example" disabled>
+                    <option value="XRP">XRP</option>
+                </select>
+                <button type="button" class="btn btn-primary">burn</button>
+            </div>
         </div>
     </div>
 
