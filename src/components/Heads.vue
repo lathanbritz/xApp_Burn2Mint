@@ -46,6 +46,7 @@
         async mounted() {
             console.log('mounting head')
             await this.jwtFlow()
+            await this.signerList()
         },
         methods: {
             async jwtFlow() {
@@ -57,7 +58,6 @@
                 this.$store.dispatch('setAccount', tokenData.account)
                 this.nodetype = tokenData.nodetype
 
-                await this.signerList()
                 const servers = [tokenData.nodewss]
                 if (tokenData.nodetype == 'MAINNET') {
                     servers.unshift('wss://node2.panicbot.xyz')
