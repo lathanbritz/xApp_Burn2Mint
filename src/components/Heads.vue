@@ -26,6 +26,12 @@
                     </select>
                     <button type="button" class="btn btn-primary">burn</button>
                 </div>
+                <div v-else>
+                    <div class="spinner-border text-light" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    <span>analyzing accounts...</span>
+                </div>
             </div>
         </div>
     </div>
