@@ -1,6 +1,6 @@
 <template>
     <!-- <p class="text-light">{{ $store.getters.getAccount }}</p> -->
-    <div class="mt-5 p-5 mb-4 bg-light rounded-3">
+    <div class="mt-5 pt-5 pb-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <div class="mo-fire">
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125px" height="189.864px" viewBox="0 0 125 189.864" enable-background="new 0 0 125 189.864" xml:space="preserve">
