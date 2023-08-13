@@ -27,8 +27,6 @@
             </div>
         </div>
     </div>
-
-    <p class="text-light">ledger: {{ $store.getters.getLedger }}</p>
 </template>
 
 <script>
@@ -42,7 +40,6 @@
         data() {
             return {
                 Sdk: new XummSdkJwt(import.meta.env.VITE_APP_XAPP_KEY),
-                nodetype: 'TESTNET',
                 isLoaded: false,
                 client: null
             }
@@ -52,6 +49,7 @@
             await this.jwtFlow()
             await this.accountInfo()
             await this.signerList()
+            this.isLoaded = true
         },
         methods: {
             async jwtFlow() {
@@ -61,40 +59,8 @@
                 this.$store.dispatch('xummTokenData', tokenData)
                 console.log('account', tokenData.account)
                 this.$store.dispatch('setAccount', tokenData.account)
-                this.nodetype = tokenData.nodetype
-
-                const servers = [tokenData.nodewss]
-                if (tokenData.nodetype == 'MAINNET') {
-                    servers.unshift('wss://node2.panicbot.xyz')
-                    servers.unshift('wss://node.panicbot.xyz')
-                }
-                console.log('wss servers', servers)
-                
-                this.client = new XrplClient(servers)
-
-                // const callback = async (event) => {
-                //     let request = {
-                //         'id': 'xrpl-local',
-                //         'command': 'ledger',
-                //         'ledger_hash': event.ledger_hash,
-                //         'ledger_index': 'validated',
-                //         'transactions': true,
-                //         'expand': true,
-                //         'owner_funds': true
-                //     }
-    
-                //     const ledger_result = await this.client.send(request)
-                //     if ('error' in ledger_result) {
-                //         console.log('XRPL error', ledger_result)
-                //     }
-                    
-                //     if ('ledger' in ledger_result) {
-                        
-                //         this.$store.dispatch('setLedger', ledger_result.ledger.ledger_index)
-                //         console.log('ledger', this.$store.getters.getLedger)
-                //     }
-                // }
-                // this.client.on('ledger', callback)
+                this.$store.dispatch('clientConnect', true)
+                this.client =  this.$store.getters.getClient
             },
             async accountInfo() {
                 const payload = {

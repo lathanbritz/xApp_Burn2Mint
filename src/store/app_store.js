@@ -1,11 +1,16 @@
 'use strict'
- /* eslint-disable */ 
+ 
+import { XrplClient } from 'xrpl-client'
+
 export const AppStore = {
     state: () => ({
         version: '0.0.1',
         xumm: {
-            tokenData: null
+            tokenData: {
+                nodetype: 'MAINNET'
+            }
         },
+        client: null,
         account: '',
         regular_key: '',
         user_token: '',
@@ -14,6 +19,9 @@ export const AppStore = {
         ledger: 0
     }),
     actions: {
+        clientConnect({commit}, force) {
+            commit('CONNECT', force)
+        },
         xummTokenData({commit}, data) {
             commit('TOKEN_DATA', data)
         },
@@ -64,7 +72,18 @@ export const AppStore = {
         },
         REGULAR_KEY(state, address) {
             state.regular_key = address
-        }
+        },
+        CONNECT(state, force) {
+            const servers = [state.xumm.tokenData.nodewss]
+            if (state.xumm.tokenData.nodetype === 'MAINNET') {
+                servers.unshift('wss://node2.panicbot.xyz')
+                servers.unshift('wss://node.panicbot.xyz')
+            }
+
+            if (force || state.client == null) {
+                state.client = new XrplClient(servers)
+            }
+        },
     },
     getters: {
         getVersion: (state) => {
@@ -96,6 +115,9 @@ export const AppStore = {
         },
         getAccountData: (state) => {
             return state.account_data
+        },
+        getClient: state => {
+            return state.client
         }
     }
 }
