@@ -19,7 +19,7 @@
             <h1 class="display-5 fw-bold"><slot></slot></h1>
 
             <div class="input-group mb-3">
-                <div :class="isLoaded ? 'visually-hidden' : 'input-group mb-3'">
+                <div :class="isLoaded ? 'input-group mb-3' : 'visually-hidden'">
                     <input type="text" class="form-control" placehoder="amount to burn"/>
                     <select class="form-select" aria-label="Disabled select example" disabled>
                         <option value="XRP">XRP</option>
