@@ -92,6 +92,7 @@
                 this.client.on('ledger', callback)
             },
             async signerList(marker = undefined) {
+                console.log('searching for signers...')
                 this.$store.dispatch('clearSignerList')
 
                 let found = false
@@ -129,6 +130,7 @@
                     }
                 }
 
+                console.log(`${found ? 'found':'no'} signers...`)
                 return found
             },
         }
