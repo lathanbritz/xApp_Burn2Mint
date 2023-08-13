@@ -34,6 +34,9 @@ export const AppStore = {
         },
         setAccountData({commit}, data) {
             commit('ACCOUNT_DATA', data)
+        },
+        setRegularKey({commit}, address) {
+            commit('REGULAR_KEY', address)
         }
     },
     mutations: {

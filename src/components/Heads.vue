@@ -46,6 +46,7 @@
         async mounted() {
             console.log('mounting head')
             await this.jwtFlow()
+            await this.accountInfo()
             await this.signerList()
         },
         methods: {
@@ -90,6 +91,43 @@
                 //     }
                 // }
                 // this.client.on('ledger', callback)
+            },
+            async accountInfo() {
+                const payload = {
+                    'id': 1,
+                    'command': 'account_info',
+                    'account': this.$store.getters.getAccount,
+                    'ledger_index': 'validated'
+                }
+                let res = await this.client.send(payload)
+                console.log('accountInfo', res)
+                this.$store.dispatch('setAccountData', res.account_data)
+
+                const account_data = this.$store.getters.getAccountData
+                console.log('getAccountData', account_data)
+                const flags = flagNames(account_data.LedgerEntryType, account_data.Flags)
+                console.log('flags', flags)
+
+                // check if master key enabled.
+                if (flags.includes('lsfDisableMaster')) {
+                    this.masterKey = false
+                    console.log('masterkey disabled')
+                }
+                else {
+                    this.masterKey = true
+                    console.log('masterkey enabled')
+                }
+
+                if ('RegularKey' in account_data) {
+                    this.$store.dispatch('setRegularKey', account_data.RegularKey)
+                }
+                else {
+                    this.$store.dispatch('setRegularKey', '')
+                }
+
+                const tokenData = this.$store.getters.getXummTokenData
+                this.accountAccess = tokenData.accountaccess
+                console.log('this.accountAccess', this.accountAccess)
             },
             async signerList(marker = undefined) {
                 console.log('searching for signers...')
