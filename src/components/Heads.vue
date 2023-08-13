@@ -20,6 +20,9 @@
 
             
             <input type="text" placehoder="amount to burn"/>
+            <select class="form-select" aria-label="Disabled select example" disabled>
+                <option value="XRP">XRP</option>
+            </select>
             <button type="button" class="btn btn-primary">burn</button>
             
         </div>
