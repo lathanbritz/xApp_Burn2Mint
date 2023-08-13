@@ -1,5 +1,5 @@
 <template>
-    <p class="text-light">{{ $store.getters.getAccount }}</p>
+    <!-- <p class="text-light">{{ $store.getters.getAccount }}</p> -->
     <div class="mt-5 p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <div class="mo-fire">
