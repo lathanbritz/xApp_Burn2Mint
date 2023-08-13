@@ -187,7 +187,7 @@
     }
 
     .mo-fire {
-        width: 200px;
+        width: 100px;
         height: auto;
         position: relative;
         left:50%;
