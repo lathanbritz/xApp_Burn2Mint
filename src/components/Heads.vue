@@ -18,7 +18,7 @@
 
             <h1 class="display-5 fw-bold"><slot></slot></h1>
 
-            <h2>{{ $store.getters.getAccount }}</h2>
+            <strong>{{ $store.getters.getAccount }}</strong>
             <input type="text" placehoder="amount to burn"/>
             <button type="button" class="btn btn-primary">burn</button>
             
