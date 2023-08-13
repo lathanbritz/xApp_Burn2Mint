@@ -15,10 +15,10 @@
             }
         },
         async mounted() {
-            setTimeout(() => {
+            // setTimeout(() => {
                 this.currentLedger()
                 this.isLoaded = true
-            }, 1000)
+            // }, 1000)
         },
         methods: {
             currentLedger() {
