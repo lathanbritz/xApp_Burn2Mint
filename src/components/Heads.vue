@@ -1,5 +1,6 @@
 <template>
     <div class="mt-5 p-5 mb-4 bg-light rounded-3">
+        <p class="text-light">{{ $store.getters.getAccount }}</p>
         <div class="container-fluid py-5">
             
             <div class="mo-fire">
@@ -18,12 +19,14 @@
 
             <h1 class="display-5 fw-bold"><slot></slot></h1>
 
-            <strong>{{ $store.getters.getAccount }}</strong>
+            
             <input type="text" placehoder="amount to burn"/>
             <button type="button" class="btn btn-primary">burn</button>
             
         </div>
     </div>
+
+    <p>ledger: {{ $store.getters.getLedger }}</p>
 </template>
 
 <script>
