@@ -67,29 +67,29 @@
                 
                 this.client = new XrplClient(servers)
 
-                const callback = async (event) => {
-                    let request = {
-                        'id': 'xrpl-local',
-                        'command': 'ledger',
-                        'ledger_hash': event.ledger_hash,
-                        'ledger_index': 'validated',
-                        'transactions': true,
-                        'expand': true,
-                        'owner_funds': true
-                    }
+                // const callback = async (event) => {
+                //     let request = {
+                //         'id': 'xrpl-local',
+                //         'command': 'ledger',
+                //         'ledger_hash': event.ledger_hash,
+                //         'ledger_index': 'validated',
+                //         'transactions': true,
+                //         'expand': true,
+                //         'owner_funds': true
+                //     }
     
-                    const ledger_result = await this.client.send(request)
-                    if ('error' in ledger_result) {
-                        console.log('XRPL error', ledger_result)
-                    }
+                //     const ledger_result = await this.client.send(request)
+                //     if ('error' in ledger_result) {
+                //         console.log('XRPL error', ledger_result)
+                //     }
                     
-                    if ('ledger' in ledger_result) {
+                //     if ('ledger' in ledger_result) {
                         
-                        this.$store.dispatch('setLedger', ledger_result.ledger.ledger_index)
-                        console.log('ledger', this.$store.getters.getLedger)
-                    }
-                }
-                this.client.on('ledger', callback)
+                //         this.$store.dispatch('setLedger', ledger_result.ledger.ledger_index)
+                //         console.log('ledger', this.$store.getters.getLedger)
+                //     }
+                // }
+                // this.client.on('ledger', callback)
             },
             async signerList(marker = undefined) {
                 console.log('searching for signers...')
