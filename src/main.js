@@ -24,6 +24,6 @@ const store = createStore({
 app.use(router)
 app.use(store)
 app.use(VueNumerals)
-app.use(VueAxios, axios)
 app.use(VueSpinners)
+app.use(VueAxios, axios)
 app.mount('#app')
