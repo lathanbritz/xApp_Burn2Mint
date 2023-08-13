@@ -7,6 +7,7 @@ export const AppStore = {
             tokenData: null
         },
         account: '',
+        regular_key: '',
         user_token: '',
         signer_lists: [],
         account_data: {},
@@ -57,6 +58,9 @@ export const AppStore = {
         },
         ACCOUNT_DATA(state, data) {
             state.account_data = data
+        },
+        REGULAR_KEY(state, address) {
+            state.regular_key = address
         }
     },
     getters: {
@@ -74,6 +78,9 @@ export const AppStore = {
         },
         getSignerLists: (state) => {
             return state.signer_lists
+        },
+        getRegularKey: (state) => {
+            return state.regular_key
         },
         getSignerList: (state) => (key) => {
             if (key in state.signer_lists) {

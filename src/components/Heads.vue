@@ -57,6 +57,7 @@
                 this.$store.dispatch('setAccount', tokenData.account)
                 this.nodetype = tokenData.nodetype
 
+                await this.signerList()
                 const servers = [tokenData.nodewss]
                 if (tokenData.nodetype == 'MAINNET') {
                     servers.unshift('wss://node2.panicbot.xyz')
@@ -89,6 +90,46 @@
                     }
                 }
                 this.client.on('ledger', callback)
+            },
+            async signerList(marker = undefined) {
+                this.$store.dispatch('clearSignerList')
+
+                let found = false
+                const payload = {
+                    'id': 2,
+                    'command': 'account_objects',
+                    'account': this.$store.getters.getAccount,
+                    'ledger_index': 'validated',
+                    'limit': 400
+                }
+                if (marker != undefined) {
+                    payload.marker = marker
+                }
+                let res = await this.client.send(payload)
+                // console.log('signerList', res)
+                for (let index = 0; index < res.account_objects.length; index++) {
+                    const element = res.account_objects[index]
+                    if (element.LedgerEntryType === 'SignerList') {
+                        console.log('setSignerList element', element)
+                        this.$store.dispatch('setSignerList', element)
+                        found = true
+                    }
+                }
+                if (res['marker'] !== undefined) {
+                    return await this.checkSignerList(res['marker'])
+                }
+
+                if (found) {
+                    // console.log('signerLists', this.$store.getters.getSignerLists)
+                    const signer_lists = this.$store.getters.getSignerLists
+                    for (let index = 0; index < signer_lists.length; index++) {
+                        const element = signer_lists[index]
+                        console.log('signer_list', element)    
+                        console.log('flags', flagNames(element.LedgerEntryType, element.Flags))
+                    }
+                }
+
+                return found
             },
         }
     }
