@@ -27,7 +27,7 @@
                     <button type="button" class="btn btn-primary">burn</button>
                 </div>
                 <div v-else>
-                    <div class="spinner-border pe-3" role="status">
+                    <div class="spinner-border me-3" role="status">
                         <span class="visually-hidden"></span>
                     </div>
                     <span>analyzing accounts...</span>
