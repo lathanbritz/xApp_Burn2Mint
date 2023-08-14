@@ -23,7 +23,7 @@
                     <select class="form-select" aria-label="Disabled select example" disabled>
                         <option value="XRP">XRP</option>
                     </select>
-                    <button type="button" class="btn btn-primary">burn</button>
+                    <button type="button" class="btn btn-primary" disabled>burn</button>
                 </div>
                 <div :class="isLoaded ? 'mb-3' : 'visually-hidden'">
                     <p>RegularKey: {{ ($store.getters.getRegularKey !== '') ? $store.getters.getRegularKey.substring(0, 6) + '...' : '' }}</p>
