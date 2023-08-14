@@ -27,7 +27,7 @@
                 </div>
                 <div :class="isLoaded ? 'input-group mb-3' : 'visually-hidden'">
                     <p>RegularKey: {{ $store.getters.getRegularKey.substring(0, 6) }}</p>
-                    <p>SignerList: {{ $store.getters.setSignerList.length > 0 ? 'true':'false' }}</p>
+                    <p>SignerList: {{ ($store.getters.setSignerList !== null && $store.getters.setSignerList.length > 0) ? 'true':'false' }}</p>
                     <p>MasterKey: {{ masterKey }}</p>
                 </div>
                 <div v-if="!isLoaded">
