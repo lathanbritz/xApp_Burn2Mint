@@ -40,9 +40,6 @@
                     <span>analyzing accounts...</span>
                 </div>
             </div>
-            <div>
-                <p>node: {{ node }}</p>
-            </div>
         </div>
     </div>
 </template>
@@ -61,8 +58,7 @@
                 isLoaded: false,
                 client: null,
                 masterKey: true,
-                error: '',
-                node: ''
+                error: ''
             }
         },
         async mounted() {
@@ -79,8 +75,7 @@
             async jwtFlow() {
                 console.log('jwtFlow')
                 const tokenData = await this.Sdk.getOttData()
-                // console.log('tokenData', tokenData)
-                this.node = tokenData.nodewss
+                console.log('Client NODE', tokenData.nodewss)
                 this.$store.dispatch('xummTokenData', tokenData)
                 console.log('account', tokenData.account)
                 this.$store.dispatch('setAccount', tokenData.account)
