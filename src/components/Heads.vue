@@ -96,7 +96,7 @@
                 }
 
                 let res = await this.hooks.send(payload)
-                console.log('account lines', res)
+                console.log('accountlines result', res)
                 if ('error' in res) { 
                     this.error = res.error
                     return false 
@@ -111,7 +111,7 @@
                     'ledger_index': 'validated'
                 }
                 let res = await this.client.send(payload)
-                console.log('accountInfo', res)
+                console.log('accountInfo result', res)
                 if ('error' in res) { 
                     this.error = res.error
                     return false 
@@ -161,7 +161,7 @@
                     payload.marker = marker
                 }
                 let res = await this.client.send(payload)
-                console.log('payload signers', res)
+                console.log('signerlist result', res)
                 if ('error' in res) { 
                     this.error = res.error
                     return false 
