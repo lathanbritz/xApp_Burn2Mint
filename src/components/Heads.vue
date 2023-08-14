@@ -17,6 +17,9 @@
             </div>
 
             <h1 class="display-5 fw-bold"><slot></slot></h1>
+            <div v-if="error !== ''" class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
             <div class="input-group mb-3">
                 <div :class="isLoaded ? 'input-group mb-3' : 'visually-hidden'">
                     <input type="text" class="form-control" placehoder="amount to burn"/>
@@ -54,15 +57,18 @@
                 Sdk: new XummSdkJwt(import.meta.env.VITE_APP_XAPP_KEY),
                 isLoaded: false,
                 client: null,
-                masterKey: true
+                masterKey: true,
+                error: ''
             }
         },
         async mounted() {
             console.log('mounting head')
             await this.jwtFlow()
-            await this.accountInfo()
-            await this.signerList()
-            await this.hooksEvernodeTrustLine()
+            if (await this.accountInfo()) {
+                await this.signerList()
+                await this.hooksEvernodeTrustLine()
+            }
+            
             this.isLoaded = true
         },
         methods: {
@@ -100,6 +106,10 @@
                 }
                 let res = await this.client.send(payload)
                 console.log('accountInfo', res)
+                if ('error' in res) { 
+                    this.error = res.error
+                    return false 
+                }
                 this.$store.dispatch('setAccountData', res.account_data)
 
                 const account_data = this.$store.getters.getAccountData
@@ -127,6 +137,7 @@
                 const tokenData = this.$store.getters.getXummTokenData
                 this.accountAccess = tokenData.accountaccess
                 console.log('this.accountAccess', this.accountAccess)
+                return true
             },
             async signerList(marker = undefined) {
                 console.log('searching for signers...')
