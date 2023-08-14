@@ -26,7 +26,7 @@
                     <button type="button" class="btn btn-primary">burn</button>
                 </div>
                 <div :class="isLoaded ? 'input-group mb-3' : 'visually-hidden'">
-                    <p>RegularKey: {{ $store.getters.getRegularKey.substring(0, 6) }}</p>
+                    <p>RegularKey: {{ ($store.getters.getRegularKey !== '') ? $store.getters.getRegularKey.substring(0, 6) + '...' : '' }}</p>
                     <p>SignerList: {{ ($store.getters.getSignerList.length > 0) ? 'true':'false' }}</p>
                     <p>MasterKey: {{ masterKey }}</p>
                 </div>
