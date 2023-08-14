@@ -17,7 +17,6 @@
             </div>
 
             <h1 class="display-5 fw-bold"><slot></slot></h1>
-
             <div class="input-group mb-3">
                 <div :class="isLoaded ? 'input-group mb-3' : 'visually-hidden'">
                     <input type="text" class="form-control" placehoder="amount to burn"/>
@@ -32,6 +31,11 @@
                     </div>
                     <span>analyzing accounts...</span>
                 </div>
+            </div>
+            <div>
+                <p>RegularKey: {{ $store.getters.getRegularKey }}</p>
+                <p>SignerList: {{ $store.getters.setSignerList }}</p>
+                <p>MasterKey: {{ masterKey }}</p>
             </div>
         </div>
     </div>
@@ -49,7 +53,8 @@
             return {
                 Sdk: new XummSdkJwt(import.meta.env.VITE_APP_XAPP_KEY),
                 isLoaded: false,
-                client: null
+                client: null,
+                masterKey: true
             }
         },
         async mounted() {
