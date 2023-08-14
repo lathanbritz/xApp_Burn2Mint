@@ -22,6 +22,9 @@ export const AppStore = {
         clientConnect({commit}, force) {
             commit('CONNECT', force)
         },
+        clientClose({commit}) {
+            commit('CLOSE')
+        },
         xummTokenData({commit}, data) {
             commit('TOKEN_DATA', data)
         },
@@ -84,6 +87,10 @@ export const AppStore = {
                 state.client = new XrplClient(servers)
             }
         },
+        CLOSE(state) {
+            state.client.close()
+            state.client = null
+        }
     },
     getters: {
         getVersion: (state) => {

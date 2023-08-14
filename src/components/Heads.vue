@@ -149,6 +149,16 @@
                 console.log(`${found ? 'found':'no'} signers...`)
                 return found
             },
+            close() {
+                const self = this
+                xapp.close({ refreshEvents: true })
+                    .then(d => {
+                        self.$store.dispatch('clientClose')
+                        // d (returned value) can be Error or return data:
+                        console.log('close response:', d instanceof Error ? d.message : d)
+                    })
+                    .catch(e => console.log('Error:', e.message))
+            }
         }
     }
 </script>
