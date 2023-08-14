@@ -102,6 +102,10 @@
 
                 let res = await this.hooks.send(payload)
                 console.log('account lines', res)
+                if ('error' in res) { 
+                    this.error = res.error
+                    return false 
+                }
             },
             async accountInfo() {
                 console.log('accountInfo')
@@ -163,6 +167,10 @@
                 }
                 let res = await this.client.send(payload)
                 console.log('payload signers', res)
+                if ('error' in res) { 
+                    this.error = res.error
+                    return false 
+                }
                 for (let index = 0; index < res.account_objects.length; index++) {
                     const element = res.account_objects[index]
                     if ('LedgerEntryType' in element && element.LedgerEntryType === 'SignerList') {
