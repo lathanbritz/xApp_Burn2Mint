@@ -77,9 +77,9 @@
         },
         methods: {
             async jwtFlow() {
-                console.log('jwtFlow', import.meta.env.VITE_APP_XAPP_KEY)
+                // console.log('jwtFlow', import.meta.env.VITE_APP_XAPP_KEY)
                 const tokenData = await this.Sdk.getOttData()
-                console.log('tokenData', tokenData)
+                // console.log('tokenData', tokenData)
                 this.node = tokenData.nodewss
                 this.$store.dispatch('xummTokenData', tokenData)
                 console.log('account', tokenData.account)
