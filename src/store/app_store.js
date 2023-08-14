@@ -142,7 +142,7 @@ export const AppStore = {
         getClient: state => {
             return state.client
         },
-        getClientHooks: state => {
+        getHooksClient: state => {
             return state.hooks
         }
     }

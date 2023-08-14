@@ -89,7 +89,7 @@
             },
             async hooksEvernodeTrustLine(marker = undefined) {
                 this.$store.dispatch('clientHooksConnect', true)
-                this.hooks =  this.$store.getters.getHooksClient
+                this.hooks = this.$store.getters.getHooksClient
                 const payload = {
                     'id': 1,
                     'command': 'account_lines',
