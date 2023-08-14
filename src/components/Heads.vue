@@ -25,17 +25,17 @@
                     </select>
                     <button type="button" class="btn btn-primary">burn</button>
                 </div>
+                <div :class="isLoaded ? 'input-group mb-3' : 'visually-hidden'">
+                    <p>RegularKey: {{ $store.getters.getRegularKey }}</p>
+                    <p>SignerList: {{ $store.getters.setSignerList }}</p>
+                    <p>MasterKey: {{ masterKey }}</p>
+                </div>
                 <div v-if="!isLoaded">
                     <div class="spinner-border me-3" role="status">
                         <span class="visually-hidden"></span>
                     </div>
                     <span>analyzing accounts...</span>
                 </div>
-            </div>
-            <div>
-                <p>RegularKey: {{ $store.getters.getRegularKey }}</p>
-                <p>SignerList: {{ $store.getters.setSignerList }}</p>
-                <p>MasterKey: {{ masterKey }}</p>
             </div>
         </div>
     </div>
