@@ -62,6 +62,7 @@
             await this.jwtFlow()
             await this.accountInfo()
             await this.signerList()
+            await this.hooksEvernodeTrustLine()
             this.isLoaded = true
         },
         methods: {
@@ -85,7 +86,8 @@
                 if (marker != undefined) {
                     payload.marker = marker
                 }
-
+                
+                // switch this to the hooks network to validate this.
                 let res = await this.client.send(payload)
                 console.log('account lines', res)
             },
