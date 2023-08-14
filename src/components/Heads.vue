@@ -40,6 +40,9 @@
                     <span>analyzing accounts...</span>
                 </div>
             </div>
+            <div>
+                <p>node: {{ node }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -58,7 +61,8 @@
                 isLoaded: false,
                 client: null,
                 masterKey: true,
-                error: ''
+                error: '',
+                node: ''
             }
         },
         async mounted() {
@@ -76,6 +80,7 @@
                 console.log('jwtFlow', import.meta.env.VITE_APP_XAPP_KEY)
                 const tokenData = await this.Sdk.getOttData()
                 console.log('tokenData', tokenData)
+                this.node = tokenData.nodewss
                 this.$store.dispatch('xummTokenData', tokenData)
                 console.log('account', tokenData.account)
                 this.$store.dispatch('setAccount', tokenData.account)
