@@ -88,6 +88,8 @@
                 this.client =  this.$store.getters.getClient
             },
             async hooksEvernodeTrustLine(marker = undefined) {
+                this.$store.dispatch('clientHooksConnect', true)
+                this.hooks =  this.$store.getters.getHooksClient
                 const payload = {
                     'id': 1,
                     'command': 'account_lines',
@@ -98,8 +100,7 @@
                     payload.marker = marker
                 }
 
-                // switch this to the hooks network to validate this.
-                let res = await this.client.send(payload)
+                let res = await this.hooks.send(payload)
                 console.log('account lines', res)
             },
             async accountInfo() {

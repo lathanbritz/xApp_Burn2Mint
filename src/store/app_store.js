@@ -11,6 +11,7 @@ export const AppStore = {
             }
         },
         client: null,
+        hooks: null,
         account: '',
         regular_key: '',
         user_token: '',
@@ -24,6 +25,12 @@ export const AppStore = {
         },
         clientClose({commit}) {
             commit('CLOSE')
+        },
+        clientHooksConnect({commit}, force) {
+            commit('HOOKS_CONNECT', force)
+        },
+        clientHooksClose({commit}) {
+            commit('HOOKS_CLOSE')
         },
         xummTokenData({commit}, data) {
             commit('TOKEN_DATA', data)
@@ -90,6 +97,15 @@ export const AppStore = {
         CLOSE(state) {
             state.client.close()
             state.client = null
+        },
+        HOOKS_CONNECT(state, force) {
+            if (force || state.hooks == null) {
+                state.hooks = new XrplClient('wss://hooks-testnet-v3.xrpl-labs.com')
+            }
+        },
+        HOOKS_CLOSE(state) {
+            state.hooks.close()
+            state.hooks = null
         }
     },
     getters: {
@@ -125,6 +141,9 @@ export const AppStore = {
         },
         getClient: state => {
             return state.client
+        },
+        getClientHooks: state => {
+            return state.hooks
         }
     }
 }
