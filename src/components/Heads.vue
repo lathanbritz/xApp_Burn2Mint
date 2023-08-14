@@ -77,7 +77,7 @@
         },
         methods: {
             async jwtFlow() {
-                // console.log('jwtFlow', import.meta.env.VITE_APP_XAPP_KEY)
+                console.log('jwtFlow')
                 const tokenData = await this.Sdk.getOttData()
                 // console.log('tokenData', tokenData)
                 this.node = tokenData.nodewss
@@ -104,6 +104,7 @@
                 console.log('account lines', res)
             },
             async accountInfo() {
+                console.log('accountInfo')
                 const payload = {
                     'id': 1,
                     'command': 'account_info',
