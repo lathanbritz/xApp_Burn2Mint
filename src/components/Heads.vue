@@ -75,6 +75,20 @@
                 this.$store.dispatch('clientConnect', true)
                 this.client =  this.$store.getters.getClient
             },
+            async hooksEvernodeTrustLine(marker = undefined) {
+                const payload = {
+                    'id': 1,
+                    'command': 'account_lines',
+                    'account': this.$store.getters.getAccount,
+                    'ledger_index': 'validated'
+                }
+                if (marker != undefined) {
+                    payload.marker = marker
+                }
+
+                let res = await this.client.send(payload)
+                console.log('account lines', res)
+            },
             async accountInfo() {
                 const payload = {
                     'id': 1,
