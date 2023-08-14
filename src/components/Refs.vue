@@ -41,9 +41,8 @@
                     }
                     
                     if ('ledger' in ledger_result) {
-                        
                         this.$store.dispatch('setLedger', ledger_result.ledger.ledger_index)
-                        console.log('ledger', this.$store.getters.getLedger)
+                        // console.log('ledger', this.$store.getters.getLedger)
                     }
                 }
                 this.client.on('ledger', callback)
