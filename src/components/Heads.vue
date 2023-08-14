@@ -86,7 +86,7 @@
                 if (marker != undefined) {
                     payload.marker = marker
                 }
-                
+
                 // switch this to the hooks network to validate this.
                 let res = await this.client.send(payload)
                 console.log('account lines', res)
@@ -147,7 +147,7 @@
                 console.log('payload signers', res)
                 for (let index = 0; index < res.account_objects.length; index++) {
                     const element = res.account_objects[index]
-                    if (element.LedgerEntryType === 'SignerList') {
+                    if ('LedgerEntryType' in element && element.LedgerEntryType === 'SignerList') {
                         console.log('setSignerList element', element)
                         this.$store.dispatch('setSignerList', element)
                         found = true
